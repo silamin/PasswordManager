@@ -17,6 +17,7 @@ Protect Data at Rest
 User credentials are encrypted using the Fernet symmetric encryption scheme before being stored on disk. This ensures that even if an attacker gains access to the stored data, it remains encrypted and unreadable without the encryption key.
 Cryptographic Decisions Justification
 Fernet was chosen for encryption due to its simplicity, security, and compatibility with the cryptography library. It provides authenticated encryption, protecting against data tampering and decryption by unauthorized parties.
+![fernet encryption model](https://github.com/silamin/PasswordManager/assets/91031103/19441ebf-fb85-48a4-bdd6-6a9af691e256)
 
 Instructions to Run the Application
 Clone the repository from GitHub.
@@ -25,3 +26,5 @@ Install the required dependencies using pip install -r requirements.txt.
 Run the application by executing the script password_manager.py.
 Screenshots of the Product
 
+![Capture d'écran 2024-03-22 213053](https://github.com/silamin/PasswordManager/assets/91031103/2b5903b7-91cb-4b93-b5bd-cd86896f9aea)
+![Capture d'écran 2024-03-22 212338](https://github.com/silamin/PasswordManager/assets/91031103/6258be8e-24c5-4a58-99eb-5e4d9e9160ab)
