@@ -1,12 +1,10 @@
 import base64
 import tkinter as tk
 from tkinter import messagebox, ttk
-import math
 import json
 import secrets
 import string
 import hashlib
-from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
 from cryptography.fernet import Fernet
 
 # Constants
@@ -25,7 +23,7 @@ def generate_strong_password(length=PASSWORD_LENGTH):
 
 
 def derive_key(username, password):
-    salt = username.encode("utf-8")  # Use username as salt for salting
+    salt = username.encode("utf-8")
     key = hashlib.pbkdf2_hmac("sha256", password.encode("utf-8"), salt, 100000)
     return key
 
@@ -106,8 +104,8 @@ class LoginWindow:
     def signup(self, username, password):
         if self.app.register_user(username, password):
             messagebox.showinfo("Success", "User registered successfully!")
-            self.app.save_users()  # Save user data after successful registration
-            self.app.show_main_window(username)  # Automatically log in the user after registration
+            self.app.save_users()
+            self.app.show_main_window(username)
         else:
             messagebox.showerror("Error", "Username already exists. Please choose a different username.")
 
@@ -284,16 +282,13 @@ class PasswordManagerApp:
         except (FileNotFoundError, json.decoder.JSONDecodeError):
             return {}  # Empty dictionary for new users
 
-    # Modify the authenticate_user method to compare hashed passwords
     def authenticate_user(self, username, password):
         if username in self.users:
             stored_password = self.users[username].get("password")
             hashed_password = hashlib.sha256(password.encode()).hexdigest()
             return stored_password == hashed_password
         return False
-    import hashlib
 
-    # Modify the register_user method to hash the password before storing it
     def register_user(self, username, password):
         if username not in self.users:
             hashed_password = hashlib.sha256(password.encode()).hexdigest()
